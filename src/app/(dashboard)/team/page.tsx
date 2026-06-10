@@ -28,6 +28,7 @@ export default function TeamPage() {
     job_title: '',
     phone: '',
     status: 'active',
+    password: '',
   });
 
   const filteredUsers = users.filter((user) => 
@@ -79,7 +80,7 @@ export default function TeamPage() {
             if (!open) setEditingUser(null);
           }}>
             <DialogTrigger render={
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white" onClick={() => setFormData({ full_name: '', email: '', role: 'member', job_title: '', phone: '', status: 'active' })}>
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white" onClick={() => setFormData({ full_name: '', email: '', role: 'member', job_title: '', phone: '', status: 'active', password: '' })}>
                 <Plus className="ml-2 h-4 w-4" /> إضافة عضو
               </Button>
             } />
@@ -95,6 +96,10 @@ export default function TeamPage() {
                 <div className="space-y-2">
                   <Label htmlFor="email">البريد الإلكتروني</Label>
                   <Input id="email" type="email" required value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="password">كلمة المرور (لتسجيل الدخول)</Label>
+                  <Input id="password" type="text" value={formData.password || ''} onChange={(e) => setFormData({...formData, password: e.target.value})} required={!editingUser} />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone">رقم الهاتف</Label>

@@ -13,14 +13,14 @@ import { toast } from 'sonner';
 export default function LoginPage() {
   const router = useRouter();
   const { users, setCurrentUser } = useStore();
-  const [email, setEmail] = useState('admin@projectflow.com');
-  const [password, setPassword] = useState('password123');
+  const [email, setEmail] = useState('admin@geox.com');
+  const [password, setPassword] = useState('admin');
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     // Simulate auth logic
     const user = users.find(u => u.email === email);
-    if (user) {
+    if (user && user.password === password) {
       if (user.status !== 'active') {
         toast.error('هذا الحساب غير نشط');
         return;
@@ -77,9 +77,7 @@ export default function LoginPage() {
             حسابات تجريبية:
           </div>
           <div className="text-xs text-slate-400 text-center space-y-1">
-            <p>Admin: admin@projectflow.com</p>
-            <p>Manager: sara@projectflow.com</p>
-            <p>Member: khaled@projectflow.com</p>
+            <p>Admin: admin@geox.com | Pass: admin</p>
           </div>
         </CardFooter>
       </Card>

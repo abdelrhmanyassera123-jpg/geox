@@ -15,6 +15,7 @@ export interface User {
   phone?: string;
   avatar_url?: string;
   status: 'active' | 'inactive';
+  password?: string;
 }
 
 export interface Client {
@@ -75,9 +76,7 @@ interface AppState {
 }
 
 const mockUsers: User[] = [
-  { id: '1', full_name: 'أحمد محمود', email: 'admin@projectflow.com', role: 'admin', job_title: 'المدير التنفيذي', phone: '0501234567', status: 'active', avatar_url: 'https://i.pravatar.cc/150?u=1' },
-  { id: '2', full_name: 'سارة محمد', email: 'sara@projectflow.com', role: 'manager', job_title: 'مدير مشاريع', phone: '0501234568', status: 'active', avatar_url: 'https://i.pravatar.cc/150?u=2' },
-  { id: '3', full_name: 'خالد عبد الله', email: 'khaled@projectflow.com', role: 'member', job_title: 'مطور واجهات', phone: '0501234569', status: 'active', avatar_url: 'https://i.pravatar.cc/150?u=3' },
+  { id: '1', full_name: 'المدير العام', email: 'admin@geox.com', password: 'admin', role: 'admin', job_title: 'المدير التنفيذي', phone: '', status: 'active', avatar_url: 'https://i.pravatar.cc/150?u=1' },
 ];
 
 const mockClients: Client[] = [
@@ -100,7 +99,7 @@ const mockTasks: Task[] = [
 export const useStore = create<AppState>()(
   persist(
     (set) => ({
-      currentUser: mockUsers[0], // Auto-login as Admin for showcase
+      currentUser: null,
       users: mockUsers,
       clients: mockClients,
       projects: mockProjects,
