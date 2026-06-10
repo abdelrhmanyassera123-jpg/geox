@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ProjectFlow Manager
 
-## Getting Started
+نظام احترافي لإدارة المشاريع والأعمال، مبني بأحدث التقنيات ليوفر تجربة مستخدم سلسة وتصميم عصري (SaaS Dashboard). 
 
-First, run the development server:
+## التقنيات المستخدمة
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **إطار العمل**: Next.js 15 (App Router)
+- **لغة البرمجة**: TypeScript
+- **التصميم**: Tailwind CSS + Shadcn UI
+- **الأيقونات**: Lucide React
+- **الرسوم البيانية**: Recharts
+- **إدارة الحالة**: Zustand
+- **قاعدة البيانات والتخزين**: Supabase (PostgreSQL)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ميزات النظام
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **إدارة أعضاء الفريق**: إضافة، تعديل، حذف وبحث مع إدارة الصلاحيات (Admin, Manager, Member).
+2. **إدارة العملاء**: قاعدة بيانات متكاملة للعملاء والشركات للتواصل السريع.
+3. **إدارة المشاريع**: تتبع دورة حياة المشروع (تاريخ البدء/الانتهاء، التسعير، روابط المرفقات).
+4. **تسعير ذكي**: خياران للتسعير (سعر ثابت للمشروع، أو تسعير تلقائي بناءً على المهام).
+5. **توزيع الفريق**: تعيين عدة أعضاء لنفس المشروع.
+6. **إدارة المهام**: تتبع حالة كل مهمة ومسؤولها وتواريخها بدقة.
+7. **لوحة تحكم تفاعلية**: إحصائيات عامة، رسوم بيانية توضح الإنجاز والأرباح.
+8. **التقارير**: تصدير بيانات المشاريع والعملاء بصيغ PDF و Excel.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## خطوات التشغيل محلياً
 
-## Learn More
+1. **تثبيت الحزم (Dependencies)**
+   تأكد من وجود Node.js مثبت على جهازك. افتح موجه الأوامر (Terminal) واكتب:
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **تشغيل المشروع**
+   ```bash
+   npm run dev
+   ```
+   سيتم تشغيل الخادم المحلي. قم بزيارة `http://localhost:3000` في المتصفح.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **تسجيل الدخول**
+   المشروع يأتي ببيانات تجريبية (Seed Data) محملة مسبقاً وتعمل بدون الحاجة لإنشاء حساب في البداية.
+   - كمدير (Admin): `admin@projectflow.com` (كلمة المرور: password123)
+   - كمدير مشاريع (Manager): `sara@projectflow.com`
+   - كعضو (Member): `khaled@projectflow.com`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ربط قاعدة البيانات (Supabase)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+إذا أردت الانتقال إلى بيئة الإنتاج:
+1. قم بإنشاء مشروع جديد في [Supabase](https://supabase.com).
+2. انسخ محتوى الملف `supabase/schema.sql` وقم بتشغيله في نافذة SQL Editor في مشروعك على Supabase.
+3. قم بإنشاء ملف `.env.local` في مجلد المشروع الرئيسي وأضف المتغيرات التالية:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+   ```
+4. قم بتحديث `src/lib/store.ts` ليعتمد على استدعاءات API بدلاً من التخزين المحلي (Zustand Persist).
