@@ -72,14 +72,6 @@ export default function LoginPage() {
             </Button>
           </form>
         </CardContent>
-        <CardFooter className="flex flex-col items-center gap-2">
-          <div className="text-sm text-slate-500 mt-4">
-            حسابات تجريبية:
-          </div>
-          <div className="text-xs text-slate-400 text-center space-y-1">
-            <p>Admin: admin@geox.com | Pass: admin</p>
-          </div>
-        </CardFooter>
       </Card>
     </div>
   );

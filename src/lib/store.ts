@@ -119,7 +119,7 @@ export const useStore = create<AppState>()(
       deleteTask: (id) => set((state) => ({ tasks: state.tasks.filter((t) => t.id !== id) })),
     }),
     {
-      name: 'projectflow-storage',
+      name: 'geox-storage-v2',
     }
   )
 );
